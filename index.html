@@ -1,0 +1,1629 @@
+<!DOCTYPE html>
+<!-- saved from url=(0050)file:///C:/Users/taiga/Downloads/lexara-law_9.html -->
+<html lang="ja" class="translated-ltr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LEXARA ― 執行を通じて正義を定義する</title>
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+<link href="./index_files/css2" rel="stylesheet">
+<style>
+/* ============================================================
+   LEXARA LAW — MONOLITH NOIR
+   ============================================================ */
+
+:root {
+  --void:        #080808;
+  --obsidian:    #0e0e0f;
+  --charcoal:    #161618;
+  --graphite:    #1e1e21;
+  --steel:       #2a2a2e;
+  --muted:       #3a3a40;
+  --border:      rgba(255,255,255,0.07);
+  --border-lit:  rgba(255,255,255,0.14);
+  --silver:      #9a9aa8;
+  --silver-hi:   #c4c4d0;
+  --white:       #f0f0f2;
+  --white-pure:  #ffffff;
+  --gold:        #b8955a;
+  --gold-light:  #d4b07a;
+  --gold-dim:    rgba(184,149,90,0.15);
+
+  --ff-serif:    'Cinzel', serif;
+  --ff-body:     'EB Garamond', serif;
+  --ff-ui:       'DM Sans', sans-serif;
+
+  --ease-expo:   cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-in:     cubic-bezier(0.4, 0, 1, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  background: var(--void);
+  color: var(--silver);
+  font-family: var(--ff-body);
+  font-size: 1.05rem;
+  line-height: 1.75;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Grain overlay */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9998;
+  mix-blend-mode: overlay;
+}
+
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+
+/* ============================================================
+   LENIS SMOOTH SCROLL PLACEHOLDER + SCROLL PROGRESS
+   ============================================================ */
+.scroll-bar {
+  position: fixed;
+  top: 0; left: 0;
+  width: 0%;
+  height: 1px;
+  background: linear-gradient(90deg, var(--gold), var(--gold-light));
+  z-index: 9999;
+  transition: width 0.1s linear;
+  box-shadow: 0 0 8px var(--gold);
+}
+
+/* ============================================================
+   CUSTOM CURSOR
+   ============================================================ */
+.c-dot {
+  position: fixed; top: 0; left: 0;
+  width: 5px; height: 5px;
+  background: var(--gold);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9997;
+  transform: translate(-50%,-50%);
+}
+@media (hover: none) { .c-dot { display: none; } body { cursor: auto; } }
+
+/* ============================================================
+   NAV
+   ============================================================ */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 500;
+  padding: 0 4rem;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background 0.6s var(--ease-expo), border-color 0.6s;
+  border-bottom: 1px solid transparent;
+}
+
+nav.solid {
+  background: rgba(8,8,8,0.88);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom-color: var(--border);
+}
+
+.nav-wordmark {
+  font-family: var(--ff-serif);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.35em;
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.nav-wordmark-sep {
+  width: 1px;
+  height: 18px;
+  background: var(--gold);
+  opacity: 0.6;
+}
+
+.nav-wordmark-sub {
+  font-family: var(--ff-ui);
+  font-size: 0.6rem;
+  font-weight: 300;
+  letter-spacing: 0.2em;
+  color: var(--silver);
+  text-transform: uppercase;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  list-style: none;
+}
+
+.nav-links a {
+  font-family: var(--ff-ui);
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--silver);
+  position: relative;
+  transition: color 0.3s;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -3px; left: 0;
+  width: 0; height: 1px;
+  background: var(--gold);
+  transition: width 0.35s var(--ease-expo);
+}
+.nav-links a:hover { color: var(--white); }
+.nav-links a:hover::after { width: 100%; }
+
+.nav-cta {
+  font-family: var(--ff-ui);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--void) !important;
+  background: var(--gold);
+  padding: 0.55rem 1.4rem;
+  border-radius: 1px;
+  transition: background 0.3s, box-shadow 0.3s !important;
+}
+.nav-cta::after { display: none !important; }
+.nav-cta:hover {
+  background: var(--gold-light) !important;
+  box-shadow: 0 0 24px rgba(184,149,90,0.35) !important;
+  color: var(--void) !important;
+}
+
+/* ============================================================
+   REVEAL ANIMATIONS
+   ============================================================ */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.9s var(--ease-expo), transform 0.9s var(--ease-expo);
+}
+[data-reveal].in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+[data-reveal="left"] { transform: translateX(-40px); }
+[data-reveal="left"].in-view { transform: translateX(0); }
+[data-reveal="right"] { transform: translateX(40px); }
+[data-reveal="right"].in-view { transform: translateX(0); }
+[data-reveal="scale"] { transform: scale(0.96); }
+[data-reveal="scale"].in-view { transform: scale(1); }
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-end;
+  padding: 72px 4rem 8rem;
+  overflow: hidden;
+}
+
+/* Geometric background */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: var(--void);
+}
+
+.hero-bg-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 80px 80px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+}
+
+.hero-bg-glow {
+  position: absolute;
+  top: -30%; left: 50%;
+  transform: translateX(-50%);
+  width: 900px; height: 700px;
+  background: radial-gradient(ellipse, rgba(184,149,90,0.06) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.hero-bg-line {
+  position: absolute;
+  top: 0; right: 25%;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent 0%, rgba(184,149,90,0.2) 30%, rgba(184,149,90,0.2) 70%, transparent 100%);
+}
+
+.hero-bg-num {
+  position: absolute;
+  bottom: 8rem; right: 4rem;
+  font-family: var(--ff-serif);
+  font-size: 12rem;
+  font-weight: 900;
+  line-height: 1;
+  color: rgba(255,255,255,0.02);
+  letter-spacing: -0.05em;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Hero content */
+.hero-content {
+  position: relative;
+  z-index: 10;
+  max-width: 900px;
+}
+
+
+
+.hero-title {
+  font-family: var(--ff-serif);
+  font-size: clamp(3.2rem, 7.5vw, 7rem);
+  font-weight: 700;
+  line-height: 1.0;
+  color: var(--white);
+  letter-spacing: -0.01em;
+  margin-bottom: 2.5rem;
+  overflow: hidden;
+}
+
+.hero-title-line {
+  display: block;
+  overflow: hidden;
+}
+
+.hero-title-inner {
+  display: block;
+  transform: translateY(110%);
+  animation: slideUp 1s var(--ease-expo) forwards;
+}
+.hero-title-line:nth-child(1) .hero-title-inner { animation-delay: 0.35s; }
+.hero-title-line:nth-child(2) .hero-title-inner { animation-delay: 0.5s; }
+.hero-title-line:nth-child(3) .hero-title-inner { animation-delay: 0.65s; color: var(--gold); font-style: italic; }
+
+.hero-meta {
+  display: flex;
+  align-items: flex-start;
+  gap: 4rem;
+  opacity: 0;
+  animation: fadeUp 1s 0.85s var(--ease-expo) forwards;
+}
+
+.hero-desc {
+  max-width: 360px;
+  font-size: 0.95rem;
+  line-height: 1.85;
+  color: var(--silver);
+  font-style: italic;
+}
+
+.hero-stats {
+  display: flex;
+  gap: 3rem;
+  flex-shrink: 0;
+}
+
+.hero-stat-num {
+  font-family: var(--ff-serif);
+  font-size: 2.4rem;
+  font-weight: 600;
+  color: var(--white);
+  line-height: 1;
+  margin-bottom: 0.4rem;
+}
+
+.hero-stat-label {
+  font-family: var(--ff-ui);
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--silver);
+}
+
+.hero-scroll-hint {
+  position: absolute;
+  bottom: 3rem; right: 4rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-family: var(--ff-ui);
+  font-size: 0.6rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--muted);
+  opacity: 0;
+  animation: fadeUp 1s 1.2s var(--ease-expo) forwards;
+}
+.hero-scroll-hint::before {
+  content: '';
+  display: block;
+  width: 24px; height: 1px;
+  background: var(--muted);
+  animation: expandLine 2s 2s var(--ease-expo) infinite alternate;
+}
+@keyframes expandLine {
+  from { width: 16px; }
+  to   { width: 40px; }
+}
+
+@keyframes slideUp {
+  to { transform: translateY(0); }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================================
+   DIVIDER
+   ============================================================ */
+.divider {
+  width: 100%;
+  height: 1px;
+  background: var(--border);
+  position: relative;
+}
+.divider::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 80px; height: 1px;
+  background: var(--gold);
+}
+
+/* Section common */
+section { position: relative; }
+
+.s-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 4rem;
+}
+
+.s-tag {
+  font-family: var(--ff-ui);
+  font-size: 0.6rem;
+  font-weight: 400;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.2rem;
+}
+.s-tag::before {
+  content: '';
+  display: block;
+  width: 28px; height: 1px;
+  background: var(--gold);
+  flex-shrink: 0;
+}
+
+.s-heading {
+  font-family: var(--ff-serif);
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  font-weight: 600;
+  color: var(--white);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+.s-heading em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+/* ============================================================
+   ABOUT STRIP
+   ============================================================ */
+.about-strip {
+  padding: 7rem 0;
+  background: var(--obsidian);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.about-strip-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 4rem;
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 7rem;
+  align-items: center;
+}
+
+.about-pull {
+  font-family: var(--ff-body);
+  font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+  font-style: italic;
+  line-height: 1.55;
+  color: var(--white-pure);
+  border-left: 2px solid var(--gold);
+  padding-left: 2rem;
+}
+
+.about-body p {
+  font-size: 0.95rem;
+  color: var(--silver);
+  line-height: 1.9;
+  margin-bottom: 1.2rem;
+}
+
+.about-body p:last-child { margin-bottom: 0; }
+
+.about-body strong { color: var(--silver-hi); font-weight: 500; }
+
+/* ============================================================
+   PRACTICE AREAS
+   ============================================================ */
+.practice {
+  padding: 9rem 0;
+  background: var(--void);
+}
+
+.practice-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 5rem;
+}
+
+.practice-header-right {
+  font-family: var(--ff-ui);
+  font-size: 0.78rem;
+  color: var(--silver);
+  max-width: 300px;
+  line-height: 1.75;
+  text-align: right;
+}
+
+/* Practice grid: asymmetric */
+.practice-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+}
+
+.pcard {
+  background: var(--obsidian);
+  padding: 3rem;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: background 0.4s var(--ease-expo);
+}
+
+.pcard::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s var(--ease-expo);
+}
+
+.pcard:hover { background: var(--charcoal); }
+.pcard:hover::before { transform: scaleX(1); }
+
+.pcard:active {
+  transform: scale(0.99);
+  transition: transform 0.1s;
+}
+
+.pcard--large { grid-row: 1 / 3; }
+
+.pcard-num {
+  font-family: var(--ff-serif);
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  color: var(--gold);
+  margin-bottom: 3.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+.pcard-num::after {
+  content: '';
+  display: block;
+  width: 20px; height: 1px;
+  background: var(--gold);
+  opacity: 0.5;
+}
+
+.pcard-icon {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  display: block;
+  filter: grayscale(0.3);
+  transition: transform 0.4s var(--ease-spring);
+}
+.pcard:hover .pcard-icon { transform: scale(1.15) rotate(-5deg); }
+
+.pcard-title {
+  font-family: var(--ff-serif);
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--white);
+  line-height: 1.25;
+  margin-bottom: 1rem;
+  letter-spacing: 0.01em;
+}
+
+.pcard--large .pcard-title {
+  font-size: clamp(1.8rem, 2.5vw, 2.4rem);
+  margin-bottom: 1.5rem;
+}
+
+.pcard-desc {
+  font-size: 0.88rem;
+  color: var(--silver);
+  line-height: 1.8;
+  margin-bottom: 2rem;
+}
+
+.pcard--large .pcard-desc { max-width: 400px; }
+
+.pcard-link {
+  font-family: var(--ff-ui);
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  transition: gap 0.3s var(--ease-expo);
+}
+.pcard:hover .pcard-link { gap: 1rem; }
+.pcard-link::after {
+  content: '→';
+  font-size: 0.8rem;
+  transition: transform 0.3s var(--ease-expo);
+}
+.pcard:hover .pcard-link::after { transform: translateX(4px); }
+
+.pcard-bg-num {
+  position: absolute;
+  bottom: -1rem; right: -0.5rem;
+  font-family: var(--ff-serif);
+  font-size: 7rem;
+  font-weight: 900;
+  color: rgba(255,255,255,0.02);
+  pointer-events: none;
+  user-select: none;
+  line-height: 1;
+  transition: color 0.4s;
+}
+.pcard:hover .pcard-bg-num { color: rgba(184,149,90,0.04); }
+
+/* ============================================================
+   TEAM
+   ============================================================ */
+.team {
+  padding: 9rem 0;
+  background: var(--charcoal);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.team-header { margin-bottom: 5rem; }
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+}
+
+.tcard {
+  background: var(--charcoal);
+  padding: 2.8rem 2.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.4s;
+}
+
+.tcard::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: linear-gradient(135deg, rgba(184,149,90,0.06), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.tcard:hover { background: var(--graphite); }
+.tcard:hover::after { opacity: 1; }
+
+.tcard-avatar {
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  background: var(--steel);
+  border: 1px solid var(--border-lit);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--ff-serif);
+  font-size: 1.1rem;
+  color: var(--gold);
+  margin-bottom: 1.8rem;
+  font-weight: 600;
+}
+
+.tcard-name {
+  font-family: var(--ff-serif);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 0.3rem;
+  letter-spacing: 0.02em;
+}
+
+.tcard-role {
+  font-family: var(--ff-ui);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.5rem;
+}
+
+.tcard-bio {
+  font-size: 0.85rem;
+  color: var(--silver);
+  line-height: 1.8;
+}
+
+/* ============================================================
+   FEES TABLE
+   ============================================================ */
+.fees {
+  padding: 9rem 0;
+  background: var(--void);
+}
+
+.fees-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 4rem;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 6rem;
+  align-items: start;
+}
+
+.fees-intro { position: sticky; top: 8rem; }
+
+.fees-intro .s-heading { margin-bottom: 1.5rem; }
+
+.fees-note {
+  font-size: 0.85rem;
+  color: var(--silver);
+  line-height: 1.85;
+  margin-bottom: 2rem;
+  font-style: italic;
+}
+
+.fees-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--ff-ui);
+  font-size: 0.62rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid rgba(184,149,90,0.3);
+  padding: 0.5rem 1rem;
+  border-radius: 1px;
+}
+
+.fees-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid var(--border);
+}
+
+.fees-table thead tr {
+  background: var(--graphite);
+  border-bottom: 1px solid var(--border-lit);
+}
+
+.fees-table thead th {
+  padding: 1.2rem 1.5rem;
+  font-family: var(--ff-ui);
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--silver-hi);
+  text-align: left;
+}
+
+.fees-table tbody tr {
+  border-bottom: 1px solid var(--border);
+  transition: background 0.25s;
+}
+.fees-table tbody tr:hover { background: rgba(255,255,255,0.02); }
+.fees-table tbody tr:last-child { border-bottom: none; }
+
+.fees-table td {
+  padding: 1.3rem 1.5rem;
+  font-size: 0.9rem;
+  color: var(--silver);
+  line-height: 1.6;
+  vertical-align: top;
+}
+
+.fees-table td:first-child {
+  font-family: var(--ff-serif);
+  font-size: 0.95rem;
+  color: var(--white);
+  font-weight: 500;
+}
+
+.fees-table .price {
+  font-family: var(--ff-serif);
+  color: var(--gold);
+  font-weight: 600;
+  font-size: 1rem;
+  white-space: nowrap;
+}
+
+.fees-table .tag-pill {
+  display: inline-block;
+  font-family: var(--ff-ui);
+  font-size: 0.58rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.6rem;
+  border-radius: 1px;
+  background: var(--gold-dim);
+  color: var(--gold-light);
+  border: 1px solid rgba(184,149,90,0.25);
+}
+
+/* ============================================================
+   CONTACT
+   ============================================================ */
+.contact {
+  padding: 9rem 0 0;
+  background: var(--obsidian);
+  border-top: 1px solid var(--border);
+}
+
+.contact-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 4rem;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 6rem;
+  align-items: start;
+}
+
+.contact-left .s-heading { margin-bottom: 1.5rem; }
+
+.contact-desc {
+  font-size: 0.9rem;
+  color: var(--silver);
+  line-height: 1.9;
+  margin-bottom: 3rem;
+  font-style: italic;
+}
+
+.contact-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.contact-detail-item {
+  display: flex;
+  gap: 1.2rem;
+  align-items: flex-start;
+}
+
+.contact-detail-icon {
+  width: 36px; height: 36px;
+  border: 1px solid var(--border-lit);
+  border-radius: 1px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.85rem;
+  color: var(--gold);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.contact-detail-label {
+  font-family: var(--ff-ui);
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.2rem;
+}
+
+.contact-detail-val {
+  font-size: 0.9rem;
+  color: var(--silver-hi);
+}
+
+/* Map placeholder */
+.map-frame {
+  height: 200px;
+  background: var(--charcoal);
+  border: 1px solid var(--border);
+  border-radius: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.map-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 30px 30px;
+}
+
+.map-pin {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.map-pin-dot {
+  width: 12px; height: 12px;
+  background: var(--gold);
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px rgba(184,149,90,0.2), 0 0 20px rgba(184,149,90,0.3);
+  animation: mapPulse 2s ease-in-out infinite;
+}
+
+@keyframes mapPulse {
+  0%, 100% { box-shadow: 0 0 0 4px rgba(184,149,90,0.2), 0 0 20px rgba(184,149,90,0.3); }
+  50%       { box-shadow: 0 0 0 8px rgba(184,149,90,0.1), 0 0 30px rgba(184,149,90,0.4); }
+}
+
+.map-label {
+  font-family: var(--ff-ui);
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  color: var(--silver);
+  background: rgba(14,14,15,0.9);
+  padding: 0.3rem 0.8rem;
+  border: 1px solid var(--border);
+}
+
+/* Contact form */
+.contact-form { display: flex; flex-direction: column; gap: 0; }
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+}
+
+.form-field {
+  position: relative;
+  background: var(--charcoal);
+  border: 1px solid var(--border);
+  border-radius: 0;
+  margin: 0 0 1px 0;
+  transition: border-color 0.3s, background 0.3s;
+}
+
+.form-row .form-field { border-right: none; }
+.form-row .form-field:last-child { border-right: 1px solid var(--border); }
+
+.form-field:focus-within {
+  border-color: var(--gold);
+  background: rgba(184,149,90,0.03);
+}
+
+.form-field label {
+  display: block;
+  font-family: var(--ff-ui);
+  font-size: 0.58rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--silver);
+  padding: 1rem 1.4rem 0;
+  transition: color 0.3s;
+}
+.form-field:focus-within label { color: var(--gold); }
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+  display: block;
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 0.4rem 1.4rem 1rem;
+  font-family: var(--ff-body);
+  font-size: 0.95rem;
+  color: var(--white);
+  resize: none;
+  -webkit-appearance: none;
+}
+
+.form-field select { cursor: pointer; }
+
+.form-field select option {
+  background: var(--charcoal);
+  color: var(--white);
+}
+
+.form-field textarea {
+  min-height: 130px;
+  line-height: 1.7;
+}
+
+input::placeholder, textarea::placeholder { color: var(--muted); }
+
+.form-check-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  padding: 1.2rem 0;
+  font-size: 0.78rem;
+  color: var(--silver);
+  line-height: 1.6;
+  border-top: 1px solid var(--border);
+  margin-top: 1px;
+}
+
+.form-check-row input[type="checkbox"] {
+  width: 14px; height: 14px;
+  margin-top: 2px;
+  accent-color: var(--gold);
+  flex-shrink: 0;
+}
+
+.form-submit {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.3rem 1.6rem;
+  background: var(--gold);
+  border: none;
+  cursor: pointer;
+  font-family: var(--ff-ui);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--void);
+  transition: background 0.3s, box-shadow 0.3s, transform 0.15s;
+  width: 100%;
+  margin-top: 1px;
+  border-radius: 0;
+}
+.form-submit:hover {
+  background: var(--gold-light);
+  box-shadow: 0 0 30px rgba(184,149,90,0.25);
+}
+.form-submit:active { transform: scale(0.99); }
+
+.form-submit-arrow {
+  font-size: 1rem;
+  transition: transform 0.3s var(--ease-expo);
+}
+.form-submit:hover .form-submit-arrow { transform: translateX(6px); }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer {
+  margin-top: 7rem;
+  padding: 3rem 0;
+  border-top: 1px solid var(--border);
+  background: var(--obsidian);
+}
+
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer-wordmark {
+  font-family: var(--ff-serif);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.4em;
+  color: var(--white);
+}
+
+.footer-copy {
+  font-family: var(--ff-ui);
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+}
+
+.footer-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+.footer-links a {
+  font-family: var(--ff-ui);
+  font-size: 0.62rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  transition: color 0.3s;
+}
+.footer-links a:hover { color: var(--gold); }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 1024px) {
+  nav { padding: 0 2rem; }
+  .s-inner, .fees-inner, .contact-inner, .footer-inner { padding: 0 2rem; }
+  .about-strip-inner { padding: 0 2rem; gap: 3rem; }
+
+  .practice-grid { grid-template-columns: 1fr 1fr; }
+  .pcard--large { grid-column: 1 / 3; grid-row: auto; }
+
+  .team-grid { grid-template-columns: 1fr 1fr; }
+
+  .fees-inner { grid-template-columns: 1fr; gap: 3rem; }
+  .fees-intro { position: static; }
+
+  .contact-inner { grid-template-columns: 1fr; gap: 3.5rem; }
+
+  .hero { padding: 0 2rem 7rem; }
+}
+
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .hero-meta { flex-direction: column; gap: 2.5rem; }
+  .hero-stats { gap: 2rem; }
+  .about-strip-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  .practice-header { flex-direction: column; gap: 1.5rem; align-items: flex-start; }
+  .practice-header-right { text-align: left; }
+  .practice-grid { grid-template-columns: 1fr; }
+  .pcard--large { grid-column: auto; }
+  .team-grid { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  .form-row .form-field { border-right: 1px solid var(--border); }
+}
+</style>
+<link type="text/css" rel="stylesheet" charset="UTF-8" href="./index_files/m=el_main_css"></head>
+<body>
+
+<!-- Scroll progress -->
+<div class="scroll-bar" id="scrollBar"></div>
+
+<!-- Custom cursor -->
+<div class="c-dot" id="cDot" style="left: 498px; top: 49px;"></div>
+
+<!-- ============================================================
+     NAV
+     ============================================================ -->
+<nav id="nav">
+  <div class="nav-wordmark"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">
+    レクサラ
+    </font></font><div class="nav-wordmark-sep"></div>
+    <span class="nav-wordmark-sub"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">法律事務所</font></font></span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="file:///C:/Users/taiga/Downloads/lexara-law_9.html#practice"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">取扱業務</font></font></a></li>
+    <li><a href="file:///C:/Users/taiga/Downloads/lexara-law_9.html#team"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">弁護士紹介</font></font></a></li>
+    <li><a href="file:///C:/Users/taiga/Downloads/lexara-law_9.html#fees"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">費用案内</font></font></a></li>
+    <li><a href="file:///C:/Users/taiga/Downloads/lexara-law_9.html#contact"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">お問い合わせ</font></font></a></li>
+    <li><a href="file:///C:/Users/taiga/Downloads/lexara-law_9.html#contact" class="nav-cta"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">無料相談</font></font></a></li>
+  </ul>
+</nav>
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section class="hero" id="hero">
+  <div class="hero-bg">
+    <div class="hero-bg-grid"></div>
+    <div class="hero-bg-glow"></div>
+    <div class="hero-bg-line"></div>
+  </div>
+  <div class="hero-bg-num"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">1992年</font></font></div>
+
+  <div class="hero-content">
+
+    <h1 class="hero-title">
+      <span class="hero-title-line"><span class="hero-title-inner"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">定義する</font></font></span></span>
+      <span class="hero-title-line"><span class="hero-title-inner"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">正義を通じて</font></font></span></span>
+      <span class="hero-title-line"><span class="hero-title-inner"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">実行。</font></font></span></span>
+    </h1>
+
+    <div class="hero-meta">
+      <p class="hero-desc"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">
+        戦略的な精度と揺るぎない誠実さが融合する場所。私たちは、決して負けることのない人々を代表する。
+      </font></font></p>
+      <div class="hero-stats">
+        <div>
+          <div class="hero-stat-num"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">98%</font></font></div>
+          <div class="hero-stat-label"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">勝訴率</font></font></div>
+        </div>
+        <div>
+          <div class="hero-stat-num"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">32歳以上</font></font></div>
+          <div class="hero-stat-label"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">弁護士業</font></font><br><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">実績年数</font></font></div>
+        </div>
+        <div>
+          <div class="hero-stat-num"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">10億円以上</font></font></div>
+          <div class="hero-stat-label"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">依頼人のための</font></font><br><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">回収実績</font></font></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-scroll-hint"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">スクロールして詳細を見る</font></font></div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ============================================================
+     ABOUT STRIP
+     ============================================================ -->
+<section class="about-strip">
+  <div class="about-strip-inner">
+    <div data-reveal="left">
+      <p class="about-pull"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">
+        「法律は弱者を守る盾ではなく、準備のできた者のための武器である。」
+      </font></font></p>
+    </div>
+    <div data-reveal="right">
+      <div class="s-tag"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">私たちの理念</font></font></div>
+      <div class="about-body">
+        <p><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">
+          Lexaraでは、</font></font><strong><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">分析の厳密さと戦術的な先見性が</font></font></strong><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">交わる領域で活動しています。当社の弁護士は単なるアドバイザーではなく、あらゆる法的紛争において3手先まで見通せるよう訓練された、解決策の設計者です。
+        </font></font></p>
+        <p><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">
+          規模の大小を問わず、すべての案件に対し、妥協のない徹底した準備を行います。勝訴の見込みのない案件はお引き受けしません。守れない約束はいたしません。これがレクサラの理念です。
+        </font></font></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PRACTICE AREAS
+     ============================================================ -->
+<section class="practice" id="practice">
+  <div class="s-inner">
+    <div class="practice-header">
+      <div data-reveal="">
+        <div class="s-tag"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">取扱業務</font></font></div>
+        <h2 class="s-heading"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">専門分野と</font></font><br><em><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">業務内容</font></font></em></h2>
+      </div>
+      <p class="practice-header-right" data-reveal="right"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">
+        4つの専門分野に関して、数十年にわたる実績と深い専門知識を通じて、最も困難な法的課題に対応します。
+      </font></font></p>
+    </div>
+
+    <div class="practice-grid" data-reveal="scale">
+
+      <div class="pcard pcard--large">
+        <div class="pcard-num"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">01</font></font></div>
+        <span class="pcard-icon"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">⚖️</font></font></span>
+        <h3 class="pcard-title"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">企業</font></font><br><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">間仕切り</font></font></h3>
+        <p class="pcard-desc"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">
+          重大な商業紛争、株主間の対立、企業間抗争には、法律と経営の両方に精通した弁護士が必要です。当事務所は、日本の法域における最も複雑な商業紛争において、多国籍企業を代理してきました。
+        </font></font></p>
+        <a href="file:///C:/Users/taiga/Downloads/lexara-law_9.html#contact" class="pcard-link"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">ご相談はこちら</font></font></a>
+        <div class="pcard-bg-num"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">01</font></font></div>
+      </div>
+
+      <div class="pcard">
+        <div class="pcard-num"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">02</font></font></div>
+        <span class="pcard-icon"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">🏛️</font></font></span>
+        <h3 class="pcard-title"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">継承・</font></font><br><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">遺産</font></font></h3>
+        <p class="pcard-desc"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">遺言の無効主張、複雑な資産移転、国際相続など、あらゆる相続問題に完全な守秘義務のもと対応します。</font></font></p>
+        <a href="file:///C:/Users/taiga/Downloads/lexara-law_9.html#contact" class="pcard-link"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">お問い合わせ</font></font></a>
+        <div class="pcard-bg-num"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">02</font></font></div>
+      </div>
+
+      <div class="pcard">
+        <div class="pcard-num"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">03</font></font></div>
+        <span class="pcard-icon"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">👪</font></font></span>
+        <h3 class="pcard-title"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">家族法・</font></font><br><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">離婚</font></font></h3>
+        <p class="pcard-desc"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">離婚、財産分与、親権問題など、家族に関わる紛争を迅速かつ適切に解決します。</font></font></p>
+        <a href="file:///C:/Users/taiga/Downloads/lexara-law_9.html#contact" class="pcard-link"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">お問い合わせ</font></font></a>
+        <div class="pcard-bg-num"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">03</font></font></div>
+      </div>
+
+      <div class="pcard">
+        <div class="pcard-num"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">04</font></font></div>
+        <span class="pcard-icon"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">🛡️</font></font></span>
+        <h3 class="pcard-title"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">危機</font></font><br><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">対応</font></font></h3>
+        <p class="pcard-desc"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">緊急の法の介入が必要な場面で、経営幹部・企業を守るため24時間365日対応します。</font></font></p>
+        <a href="file:///C:/Users/taiga/Downloads/lexara-law_9.html#contact" class="pcard-link"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">お問い合わせ</font></font></a>
+        <div class="pcard-bg-num"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">04</font></font></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     TEAM
+     ============================================================ -->
+<section class="team" id="team">
+  <div class="s-inner">
+    <div class="team-header" data-reveal="">
+      <div class="s-tag"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">弁護士紹介</font></font></div>
+      <h2 class="s-heading"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">担当</font></font><br><em><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">弁護士</font></font></em></h2>
+    </div>
+
+    <div class="team-grid">
+      <div class="tcard" data-reveal="">
+        <div class="tcard-avatar"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">RM</font></font></div>
+        <div class="tcard-name"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">リチャード・モリ</font></font></div>
+        <div class="tcard-role"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">シニアパートナー — 企業間マネジメント</font></font></div>
+        <p class="tcard-bio"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">
+          元法務省顧問弁護士。東京、シンガポール、ニューヨークで27年の実務経験を持つ。1億円を超える複数法域にまたがる企業紛争を専門とする。
+        </font></font></p>
+      </div>
+
+      <div class="tcard" data-reveal="" style="transition-delay:0.1s">
+        <div class="tcard-avatar"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">AK</font></font></div>
+        <div class="tcard-name"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">黒田亜希子</font></font></div>
+        <div class="tcard-role"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">パートナー — 家族法・相続</font></font></div>
+        <p class="tcard-bio"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">
+          3年連続でChambers Asia-Pacific誌に選出。高額資産離婚訴訟における彼女の手法は、日本の法科大学院で実務基準として研究されている。
+        </font></font></p>
+      </div>
+
+      <div class="tcard" data-reveal="" style="transition-delay:0.2s">
+        <div class="tcard-avatar"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">KT</font></font></div>
+        <div class="tcard-name"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">高橋健二</font></font></div>
+        <div class="tcard-role"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">パートナー — 危機対応・事故弁護</font></font></div>
+        <p class="tcard-bio"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">
+          緊急の企業法務および刑事事件に対応し、予備審問における却下率は96%という実績を誇ります。緊急対応が必要なクライアントのために、24時間体制で対応可能です。
+        </font></font></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FEES TABLE
+     ============================================================ -->
+<section class="fees" id="fees">
+  <div class="fees-inner">
+    <div class="fees-intro" data-reveal="left">
+      <div class="s-tag"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">料金について</font></font></div>
+      <h2 class="s-heading"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">費用</font></font><br><em><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">案内</font></font></em></h2>
+      <p class="fees-note"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">
+        表示価格はすべて消費税抜きです。複雑な案件の場合は、初回相談後に個別の顧問契約が必要となる場合があります。
+      </font></font></p>
+      <div class="fees-badge"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">
+        🔒 弁護士・依頼者間の秘匿特権
+      </font></font></div>
+    </div>
+
+    <div data-reveal="right">
+      <table class="fees-table">
+        <thead>
+          <tr>
+            <th><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">サービス内容</font></font></th>
+            <th><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">費用</font></font></th>
+            <th><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">備考</font></font></th>
+            <th><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">状況</font></font></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">初回相談</font></font></td>
+            <td class="price"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">3万円</font></font></td>
+            <td><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">60分・完全守秘義務</font></font></td>
+            <td><span class="tag-pill"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">受付中</font></font></span></td>
+          </tr>
+          <tr>
+            <td><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">企業間意思決定</font></font><br><small><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">（報酬顧問料）</font></font></small></td>
+            <td class="price"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">80万円〜</font></font></td>
+            <td><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">戦略立案・書類作成・法廷代理人を含む</font></font></td>
+            <td><span class="tag-pill"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">要相談</font></font></span></td>
+          </tr>
+          <tr>
+            <td><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">相続・遺産整理</font></font></td>
+            <td class="price"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">15万円〜</font></font></td>
+            <td><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">遺言作成・信託設計・国際資産調整</font></font></td>
+            <td><span class="tag-pill"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">受付中</font></font></span></td>
+          </tr>
+          <tr>
+            <td><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">家族法</font></font><br><small><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">（定額制）</font></font></small></td>
+            <td class="price"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">40万円〜</font></font></td>
+            <td><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">離婚・親権・財産分与の全面代理人</font></font></td>
+            <td><span class="tag-pill"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">受付中</font></font></span></td>
+          </tr>
+          <tr>
+            <td><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">緊急対応</font></font></td>
+            <td class="price"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">50万円</font></font></td>
+            <td><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">24時間緊急対応・最低契約金額</font></font></td>
+            <td><span class="tag-pill"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">24時間</font></font></span></td>
+          </tr>
+          <tr>
+            <td><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">書類審査</font></font></td>
+            <td class="price"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">50,000円/時</font></font></td>
+            <td><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">契約書・NDA・M&amp;A関連書類</font></font></td>
+            <td><span class="tag-pill"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">受付中</font></font></span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CONTACT
+     ============================================================ -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div class="contact-left" data-reveal="left">
+      <div class="s-tag"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">秘密厳守の相談窓口</font></font></div>
+      <h2 class="s-heading"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">まずは</font></font><br><em><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">ご相談ください</font></font></em></h2>
+      <p class="contact-desc"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">
+        すべてのやり取りは、最初の連絡時から弁護士・依頼者間の秘匿特権によって保護されます。どんなに緊急な案件や複雑な案件でも、お気軽にご相談ください。
+      </font></font></p>
+
+      <div class="contact-detail">
+        <div class="contact-detail-item">
+          <div class="contact-detail-icon"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">☎</font></font></div>
+          <div>
+            <div class="contact-detail-label"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">直通電話</font></font></div>
+            <div class="contact-detail-val"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">+81 (0)3 — 6xxx — xxxx</font></font></div>
+          </div>
+        </div>
+        <div class="contact-detail-item">
+          <div class="contact-detail-icon"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">✉</font></font></div>
+          <div>
+            <div class="contact-detail-label"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">メールアドレス</font></font></div>
+            <div class="contact-detail-val"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">counsel@lexara-law.jp</font></font></div>
+          </div>
+        </div>
+        <div class="contact-detail-item">
+          <div class="contact-detail-icon"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">⌖</font></font></div>
+          <div>
+            <div class="contact-detail-label"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">所在地</font></font></div>
+            <div class="contact-detail-val"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">〒100-0005 東京都</font></font><br><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">千代田区丸の内2-1-1</font><font dir="auto" style="vertical-align: inherit;">丸の内トラストタワー23階</font></font><br><font dir="auto" style="vertical-align: inherit;"></font></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="map-frame">
+        <div class="map-grid"></div>
+        <div class="map-pin">
+          <div class="map-pin-dot"></div>
+          <div class="map-label"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">レクサラ法律事務所 - 丸之内</font></font></div>
+        </div>
+      </div>
+    </div>
+
+    <div data-reveal="right">
+      <form class="contact-form" onsubmit="return false;">
+        <div class="form-row">
+          <div class="form-field">
+            <label for="fname"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">お名前</font></font></label>
+            <input type="text" id="fname" placeholder="山田太郎">
+          </div>
+          <div class="form-field">
+            <label for="fcompany"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">会社名・組織名</font></font></label>
+            <input type="text" id="fcompany" placeholder="任意">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-field">
+            <label for="femail"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">メールアドレス</font></font></label>
+            <input type="email" id="femail" placeholder="your@email.com">
+          </div>
+          <div class="form-field">
+            <label for="fphone"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">電話番号</font></font></label>
+            <input type="tel" id="fphone" placeholder="090-0000-0000">
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label for="farea"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">ご相談の分野</font></font></label>
+          <select id="farea">
+            <option value="" disabled="" selected=""><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">分野をお選びください</font></font></option>
+            <option><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">企業間仕切り</font></font></option>
+            <option><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">継承・遺産</font></font></option>
+            <option><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">家族法・離婚</font></font></option>
+            <option><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">危機対応</font></font></option>
+            <option><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">その他・一般相談</font></font></option>
+          </select>
+        </div>
+
+        <div class="form-field">
+          <label for="fmatter"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">ご相談内容</font></font></label>
+          <textarea id="fmatter" placeholder="ご相談内容をご記入ください。いただいた情報はすべて守秘義務のもと厳重に管理いたします。"></textarea>
+        </div>
+
+        <div class="form-check-row">
+          <input type="checkbox" id="fprivacy">
+          <label for="fprivacy"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">
+            本フォームへの入力内容は弁護士・依頼人間の守秘義務により保護されます。Lexara法律事務所が本相談の目的のみに情報を使用することに同意します。
+          </font></font></label>
+        </div>
+
+        <button type="submit" class="form-submit">
+          <span><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">秘密相談を送信する</font></font></span>
+          <span class="form-submit-arrow"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">→</font></font></span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-wordmark"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">レクサラ</font></font></div>
+      <ul class="footer-links">
+        <li><a href="file:///C:/Users/taiga/Downloads/lexara-law_9.html#practice"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">業務内容</font></font></a></li>
+        <li><a href="file:///C:/Users/taiga/Downloads/lexara-law_9.html#team"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">弁護士紹介</font></font></a></li>
+        <li><a href="file:///C:/Users/taiga/Downloads/lexara-law_9.html#fees"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">費用案内</font></font></a></li>
+        <li><a href="file:///C:/Users/taiga/Downloads/lexara-law_9.html#contact"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">お問い合わせ</font></font></a></li>
+      </ul>
+      <p class="footer-copy"><font dir="auto" style="vertical-align: inherit;"><font dir="auto" style="vertical-align: inherit;">© 2025 Lexara Law &amp; Associates. All rights reserved. — 東京弁護士会登録弁護士</font></font></p>
+    </div>
+  </footer>
+</section>
+
+<script>
+// ============================================================
+// SCROLL PROGRESS BAR
+// ============================================================
+const scrollBar = document.getElementById('scrollBar');
+window.addEventListener('scroll', () => {
+  const h = document.documentElement;
+  const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+  scrollBar.style.width = pct + '%';
+}, { passive: true });
+
+// ============================================================
+// NAV SOLID ON SCROLL
+// ============================================================
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('solid', window.scrollY > 30);
+}, { passive: true });
+
+// ============================================================
+// CUSTOM CURSOR
+// ============================================================
+const dot = document.getElementById('cDot');
+let mx = 0, my = 0;
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  dot.style.left = mx + 'px';
+  dot.style.top  = my + 'px';
+});
+
+// ============================================================
+// INTERSECTION OBSERVER — SCROLL REVEALS
+// ============================================================
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('in-view');
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+document.querySelectorAll('[data-reveal]').forEach(el => io.observe(el));
+
+// ============================================================
+// 3D CARD TILT (Spring physics approximation)
+// ============================================================
+document.querySelectorAll('.pcard, .tcard').forEach(card => {
+  let vx = 0, vy = 0;    // velocity
+  let cx = 0, cy = 0;    // current rotation
+  let tx = 0, ty = 0;    // target rotation
+  let rafId = null;
+  const STIFFNESS = 0.18;
+  const DAMPING   = 0.75;
+  const MAX_ROT   = 10;
+
+  function spring() {
+    vx = vx * DAMPING + (tx - cx) * STIFFNESS;
+    vy = vy * DAMPING + (ty - cy) * STIFFNESS;
+    cx += vx; cy += vy;
+
+    card.style.transform = `perspective(900px) rotateX(${cy}deg) rotateY(${cx}deg) translateZ(${Math.abs(cx)+Math.abs(cy) > 0.5 ? 6 : 0}px)`;
+
+    if (Math.abs(vx) > 0.005 || Math.abs(vy) > 0.005 || Math.abs(tx - cx) > 0.01 || Math.abs(ty - cy) > 0.01) {
+      rafId = requestAnimationFrame(spring);
+    } else {
+      card.style.transform = '';
+      rafId = null;
+    }
+  }
+
+  card.addEventListener('mousemove', e => {
+    const r   = card.getBoundingClientRect();
+    const nx  = ((e.clientX - r.left)  / r.width  - 0.5) * 2;
+    const ny  = ((e.clientY - r.top)   / r.height - 0.5) * 2;
+    tx = nx * MAX_ROT;
+    ty = -ny * MAX_ROT;
+    if (!rafId) rafId = requestAnimationFrame(spring);
+  });
+
+  card.addEventListener('mouseleave', () => {
+    tx = 0; ty = 0;
+    if (!rafId) rafId = requestAnimationFrame(spring);
+  });
+});
+
+// ============================================================
+// ANCHOR LINK SMOOTH SCROLL (CSS scroll-behavior に委譲)
+// ============================================================
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener('click', e => {
+    const target = document.querySelector(link.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      window.scrollTo({ top: target.offsetTop - 72, behavior: 'smooth' });
+    }
+  });
+});
+</script><div id="goog-gt-tt" class="VIpgJd-yAWNEb-L7lbkb skiptranslate" style="border-radius: 12px; margin: 0 0 0 -23px; padding: 0; font-family: &#39;Google Sans&#39;, Arial, sans-serif;" data-id=""><div id="goog-gt-vt" class="VIpgJd-yAWNEb-hvhgNd"><div class="VIpgJd-yAWNEb-hvhgNd-Ud7fr"><img src="./index_files/24px.svg" width="24" height="24" alt=""><div class=" VIpgJd-yAWNEb-hvhgNd-IuizWc-i3jM8c " dir="ltr">原文</div></div><div class="VIpgJd-yAWNEb-hvhgNd-k77Iif"><div id="goog-gt-original-text" class="VIpgJd-yAWNEb-nVMfcd-fmcmS VIpgJd-yAWNEb-hvhgNd-axAV1"></div></div><div class="VIpgJd-yAWNEb-hvhgNd-N7Eqid ltr"><div class="VIpgJd-yAWNEb-hvhgNd-N7Eqid-B7I4Od ltr" dir="ltr"><div class="VIpgJd-yAWNEb-hvhgNd-UTujCb">この翻訳を評価してください</div><div class="VIpgJd-yAWNEb-hvhgNd-eO9mKe">いただいたフィードバックは Google 翻訳の改善に役立てさせていただきます</div></div><div class="VIpgJd-yAWNEb-hvhgNd-xgov5 ltr"><button id="goog-gt-thumbUpButton" type="button" class="VIpgJd-yAWNEb-hvhgNd-bgm6sf" title="良い翻訳" aria-label="良い翻訳" aria-pressed="false"><span id="goog-gt-thumbUpIcon"><svg width="24" height="24" viewBox="0 0 24 24" focusable="false" class="VIpgJd-yAWNEb-hvhgNd-THI6Vb NMm5M"><path d="M21 7h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 0S7.08 6.85 7 7H2v13h16c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73V9c0-1.1-.9-2-2-2zM7 18H4V9h3v9zm14-7l-3 7H9V8l4.34-4.34L12 9h9v2z"></path></svg></span><span id="goog-gt-thumbUpIconFilled"><svg width="24" height="24" viewBox="0 0 24 24" focusable="false" class="VIpgJd-yAWNEb-hvhgNd-THI6Vb NMm5M"><path d="M21 7h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 0S7.08 6.85 7 7v13h11c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73V9c0-1.1-.9-2-2-2zM5 7H1v13h4V7z"></path></svg></span></button><button id="goog-gt-thumbDownButton" type="button" class="VIpgJd-yAWNEb-hvhgNd-bgm6sf" title="悪い翻訳" aria-label="悪い翻訳" aria-pressed="false"><span id="goog-gt-thumbDownIcon"><svg width="24" height="24" viewBox="0 0 24 24" focusable="false" class="VIpgJd-yAWNEb-hvhgNd-THI6Vb NMm5M"><path d="M3 17h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 24s7.09-6.85 7.17-7h5V4H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2c0 1.1.9 2 2 2zM17 6h3v9h-3V6zM3 13l3-7h9v10l-4.34 4.34L12 15H3v-2z"></path></svg></span><span id="goog-gt-thumbDownIconFilled"><svg width="24" height="24" viewBox="0 0 24 24" focusable="false" class="VIpgJd-yAWNEb-hvhgNd-THI6Vb NMm5M"><path d="M3 17h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 24s7.09-6.85 7.17-7V4H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v2c0 1.1.9 2 2 2zm16 0h4V4h-4v13z"></path></svg></span></button></div></div><div id="goog-gt-votingHiddenPane" class="VIpgJd-yAWNEb-hvhgNd-aXYTce"><form id="goog-gt-votingForm" action="file://translate.googleapis.com/translate_voting?client=te_lib" method="post" target="votingFrame" class="VIpgJd-yAWNEb-hvhgNd-aXYTce"><input type="text" name="sl" id="goog-gt-votingInputSrcLang"><input type="text" name="tl" id="goog-gt-votingInputTrgLang"><input type="text" name="query" id="goog-gt-votingInputSrcText"><input type="text" name="gtrans" id="goog-gt-votingInputTrgText"><input type="text" name="vote" id="goog-gt-votingInputVote"></form><iframe name="votingFrame" frameborder="0" src="./index_files/saved_resource.html"></iframe></div></div></div>
+
+
+</body></html>
